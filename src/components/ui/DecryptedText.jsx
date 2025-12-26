@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
 
@@ -8,7 +7,6 @@ const DecryptedText = ({ text, speed = 50, className = "" }) => {
     const [isScrambling, setIsScrambling] = useState(false);
 
     useEffect(() => {
-        // Initial scramble on mount
         scramble();
     }, [text]);
 
@@ -35,7 +33,7 @@ const DecryptedText = ({ text, speed = 50, className = "" }) => {
                 setIsScrambling(false);
             }
 
-            iteration += 1 / 2; // Slower reveal
+            iteration += 1 / 2;
         }, speed);
     };
 
