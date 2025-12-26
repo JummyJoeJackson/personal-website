@@ -6,6 +6,10 @@ const Marquee = ({ children, className, reverse, pauseOnHover = false, vertical 
         <div className={cn(
             "flex overflow-hidden [--duration:40s] [--gap:1rem]",
             vertical ? "flex-col h-full w-full" : "flex-row w-full",
+            // Add gradient mask for smooth fading effects
+            vertical
+                ? "[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
+                : "[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
             className
         )}>
             <div
