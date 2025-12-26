@@ -3,7 +3,7 @@ import SpotlightCard from './components/ui/SpotlightCard';
 import DecryptedText from './components/ui/DecryptedText';
 import Dock from './components/ui/Dock';
 import Marquee from './components/ui/Marquee';
-import { Home, User, Briefcase, FileText, Code } from 'lucide-react';
+import { Mail, Home, User, Briefcase, FileText, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const UWaterlooLogo = ({ className }) => (
