@@ -3,7 +3,51 @@ import SpotlightCard from './components/ui/SpotlightCard';
 import DecryptedText from './components/ui/DecryptedText';
 import Dock from './components/ui/Dock';
 import Marquee from './components/ui/Marquee';
-import { Mail, Home, User, Briefcase, FileText, Code } from 'lucide-react';
+import { Home, User, Briefcase, FileText, Code } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const UWaterlooLogo = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM6.5 7H8.5L10.5 13L12.5 7H14.5L11.5 17H9.5L6.5 7ZM17.5 7H15.5L13.5 13L11.5 7H9.5L12.5 17H14.5L17.5 7Z" />
+    {/* Simplified W/Shield shape representation for demo purposes since we can't fetch external assets perfectly */}
+    <path fillRule="evenodd" clipRule="evenodd" d="M4.17 6.04001L10.25 19.34L11.99 15.34L13.73 19.34L19.82 6.04001H17.47L13.84 13.97L13.06 12.18L15.65 6.04001H13.47L12.01 9.53001L10.54 6.04001H8.34998L10.94 12.18L10.16 13.97L6.51998 6.04001H4.17Z" />
+  </svg>
+);
+
+const RocketBit = () => {
+  const [isLaunching, setIsLaunching] = React.useState(false);
+
+  const handleLaunch = () => {
+    if (isLaunching) return;
+    setIsLaunching(true);
+    setTimeout(() => setIsLaunching(false), 2000);
+  };
+
+  return (
+    <div
+      className="flex flex-col items-center justify-center h-full w-full cursor-pointer hover:bg-neutral-800/50 rounded-xl transition-colors p-2"
+      onClick={handleLaunch}
+    >
+      <motion.div
+        animate={isLaunching ? { y: -200, opacity: 0 } : { y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeIn" }}
+        initial={{ y: 0, opacity: 1 }}
+        onAnimationComplete={() => {
+          if (isLaunching) {
+            // Reset happens via state change which triggers re-render to initial, 
+            // but we want it to 're-appear' presumably or snap back.
+            // framer-motion manages this gracefully when state changes back.
+          }
+        }}
+      >
+        <span className="text-4xl select-none">🚀</span>
+      </motion.div>
+      <p className="text-xs text-neutral-500 mt-2 font-mono select-none">
+        {isLaunching ? "LIFTING OFF..." : "LIFT OFF"}
+      </p>
+    </div>
+  );
+};
 
 const dockItems = [
   { icon: Home, label: 'Home', href: '#' },
@@ -43,8 +87,8 @@ function App() {
         {/* Location / Status Card */}
         <SpotlightCard className="md:col-span-1 md:row-span-1 flex items-center justify-center">
           <div className="flex flex-col items-center gap-2 text-neutral-400">
-            <Mail className="w-8 h-8 text-purple-500" /> {/* Reusing Mail icon for placeholder */}
-            <span className="font-mono text-sm">San Francisco, CA</span>
+            <UWaterlooLogo className="w-12 h-12 text-yellow-500" />
+            <span className="font-mono text-sm">Waterloo, Canada</span>
             <span className="relative flex h-3 w-3 mt-1">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -54,10 +98,7 @@ function App() {
 
         {/* Interactive Element A */}
         <SpotlightCard className="md:col-span-1 md:row-span-1 flex items-center justify-center bg-neutral-900/80">
-          <div className="text-center">
-            <span className="text-4xl">🚀</span>
-            <p className="text-xs text-neutral-500 mt-2 font-mono">LIFT OFF</p>
-          </div>
+          <RocketBit />
         </SpotlightCard>
 
         {/* Big Project Feature */}
@@ -80,10 +121,10 @@ function App() {
         {/* Tech Stack / Skills - Replaced with Marquee */}
         <SpotlightCard className="md:col-span-1 md:row-span-2 flex flex-col overflow-hidden">
           <h3 className="text-xl font-bold text-neutral-200 mb-4 px-2">Stack</h3>
-          <div className="flex-grow flex items-center">
-            <Marquee className="[--duration:20s]" pauseOnHover vertical>
+          <div className="flex-grow flex items-center justify-center w-full px-2">
+            <Marquee className="[--duration:20s] py-4 h-full" pauseOnHover vertical>
               {skills.map((tech) => (
-                <span key={tech} className="mx-2 px-3 py-1.5 bg-neutral-800 rounded-full text-sm text-neutral-400 border border-neutral-700 hover:border-neutral-500 hover:text-white transition-colors cursor-default whitespace-nowrap">
+                <span key={tech} className="mx-auto px-4 py-2 bg-neutral-800 rounded-full text-sm text-neutral-400 border border-neutral-700 hover:border-neutral-500 hover:text-white transition-colors cursor-default whitespace-nowrap w-40 text-center">
                   {tech}
                 </span>
               ))}
