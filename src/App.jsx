@@ -122,7 +122,7 @@ function App() {
         <SpotlightCard className="md:col-span-1 md:row-span-2 flex flex-col overflow-hidden">
           <h3 className="text-xl font-bold text-neutral-200 mb-4 px-2">Stack</h3>
           <div className="flex-grow flex items-center justify-center w-full px-2">
-            <Marquee className="[--duration:20s] py-4 h-full" pauseOnHover vertical>
+            <Marquee className="[--duration:20s] py-4 h-full" vertical>
               {skills.map((tech) => (
                 <span key={tech} className="mx-auto px-4 py-2 bg-neutral-800 rounded-full text-sm text-neutral-400 border border-neutral-700 hover:border-neutral-500 hover:text-white transition-colors cursor-default whitespace-nowrap w-40 text-center">
                   {tech}

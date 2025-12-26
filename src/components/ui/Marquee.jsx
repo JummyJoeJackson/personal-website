@@ -17,7 +17,8 @@ const Marquee = ({ children, className, reverse, pauseOnHover = false, vertical 
                     "flex shrink-0 items-center justify-around gap-[--gap]",
                     vertical ? "flex-col animate-marquee-vertical h-max" : "flex-row animate-marquee w-max",
                     reverse && (vertical ? "animate-marquee-vertical-reverse" : "animate-marquee-reverse"),
-                    pauseOnHover && "hover:[animation-play-state:paused]"
+                    // Default to paused, run on hover
+                    "[animation-play-state:paused] hover:[animation-play-state:running]"
                 )}
             >
                 {children}
