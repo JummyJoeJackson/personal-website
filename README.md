@@ -21,6 +21,7 @@ Inspired by the visual creativity of libraries like `react-bits`, this project s
 - **Animation**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Utilities**: `clsx`, `tailwind-merge`
+- **Build**: Vite + Tailwind CSS v4 support
 
 ## 🚀 Getting Started
 
